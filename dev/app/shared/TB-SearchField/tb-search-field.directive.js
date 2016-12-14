@@ -18,14 +18,15 @@ function tbSearchField(TbUtils, filterFilter) {
         link: scope => {
             if (!scope.placeholder) scope.placeholder = "Ingrese su busqueda";
             if (scope.auto && !scope.min) scope.min = 1;
-            if (!scope.onClick) { scope.onClick = searchAll; scope.tooltip = 'Has click para buscar mas.'; }
+            if (!scope.onClick) { scope.onClick = searchAll; scope.tooltip = 'Haz click para buscar mas.'; }
 
             scope.all = null;
             scope.search = search;
 
             scope.$watch('searchText', term => {
-                if (scope.auto && term.length >= scope.min)
-                    scope.search(scope.data, term);
+                if (scope.auto && term.length >= scope.min){
+                    searchAll(term);
+                }
                 else
                     scope.results = scope.data;
             });
